@@ -10,8 +10,10 @@ include ("includes/autenticado.php");
     <body>
     <CENTER>
         <?php
+        print_r( $_SESSION['permisos']);
         if (isset($_POST['Envio'])) {
             if (isset($_POST['IWVG'])) {
+                echo "HOLAAAAAA";
                 $_SESSION['permisos'][0] = 'S';
             }
             if (isset($_POST['APAW'])) {
@@ -30,6 +32,7 @@ include ("includes/autenticado.php");
                 $_SESSION['permisos'][5] = 'S';
             }
             include ("includes/abrirbd.php");
+            echo $_SESSION['permisos'][5];
             $permisos = implode($_SESSION['permisos']);
             $sql = "UPDATE usuarios SET permisos = '{$permisos}' WHERE user ='{$_SESSION['user']}'";
             $resultado = mysqli_query($link, $sql);
